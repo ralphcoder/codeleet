@@ -17,7 +17,7 @@
  */
 
 class NestedIterator {
-private:
+
     stack<NestedInteger> nodes;
     
 public:
