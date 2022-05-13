@@ -8,7 +8,6 @@ public:
           int res=0;
         for(int i:ans)res+=i;
         return res;
-        
     }
     
 };
