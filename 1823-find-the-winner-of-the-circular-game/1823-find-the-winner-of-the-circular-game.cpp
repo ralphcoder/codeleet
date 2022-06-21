@@ -9,7 +9,7 @@ public:
           {  b=a.front();
               a.pop_front();
              a.push_back(b);
-         }
+            }
         }
         return a.front();
     }
