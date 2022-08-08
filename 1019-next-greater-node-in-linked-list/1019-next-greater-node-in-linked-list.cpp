@@ -30,3 +30,4 @@ public:
         return ans;
     }
 };
+//https://leetcode.com/problems/next-greater-node-in-linked-list/discuss/265548/C%2B%2B-O(n)-stack
