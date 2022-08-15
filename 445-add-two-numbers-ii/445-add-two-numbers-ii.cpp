@@ -23,7 +23,7 @@ public:
         int sum=0;
         ListNode *ans= new ListNode(0);
         while(a.size()!=0 || b.size()!=0)//
-        {    cout<<" --";
+        {  
             if(a.size()!=0){sum+=a.top();a.pop();}
             if(b.size()!=0){sum+=b.top();b.pop();}
             ListNode *head= new ListNode(sum/10);
