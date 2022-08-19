@@ -4,14 +4,12 @@ public:
     // Encodes a URL to a shortened URL.
     string encode(string longUrl) {
         ul=longUrl;
-      string shot="jfkljasjdfoij";
-        return shot;
+      return   "jfkljasjdfoij";
     }
 
     // Decodes a shortened URL to its original URL.
     string decode(string shortUrl) {
-        string cl=ul;
-        return cl;
+        return ul;
     }
 };
 
