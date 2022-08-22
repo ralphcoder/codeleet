@@ -10,42 +10,20 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if(!list1 and !list2)
-        {
-            return nullptr;
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if(l1==NULL)return l2;
+        if(l2==NULL)return l1;
+        if(l1->val>l2->val)std::swap(l1,l2);
+        ListNode *ans=l1;
+        while(l1!=NULL && l2!=NULL){
+            ListNode *temp=NULL;
+            while(l1!=NULL && l1->val<=l2->val){
+                temp=l1;
+                l1=l1->next;
+             }
+            temp->next=l2;
+            std::swap(l1,l2);
         }
-        else if(!list1)
-        {
-            return list2;
-        }
-        else if(!list2)
-        {
-            return list1;
-        }
-        vector<int> temp;
-        ListNode* curr1=list1;
-        ListNode* curr2=list2;
-        while(curr1!=nullptr)
-        {
-            temp.push_back(curr1->val);
-            curr1 = curr1->next;
-        }
-        while(curr2!=nullptr)
-        {
-            temp.push_back(curr2->val);
-            curr2 = curr2->next;
-        }
-        sort(temp.begin(),temp.end());
-        ListNode* head=new ListNode(temp[0]);
-        ListNode* curr=head;
-        int i=1;
-        while(i<temp.size())
-        {
-            curr->next = new ListNode(temp[i]);
-            i++;
-            curr = curr->next;
-        }
-        return head;
+        return ans;
     }
 };
