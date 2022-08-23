@@ -24,3 +24,4 @@ public:
         return true;
     }
 };
+//https://leetcode.com/problems/palindrome-linked-list/discuss/64490/My-easy-understand-C%2B%2B-solution
