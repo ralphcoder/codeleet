@@ -1,43 +1,67 @@
-class LRUCache
-{
-    public:
-        list<pair<int,int>> l;
-        unordered_map<int,list<pair<int, int>>::iterator> m;
-        int size;
-        LRUCache(int capacity)
-        {
-            size=capacity;
+class LRUCache {
+public:
+    class node{
+        public:
+        int val;
+        int key;
+        node *next;
+        node *prev;
+        node(int _key,int _val){
+            key=_key;
+            val=_val;
         }
-        int get(int key)
-        {
-            if(m.find(key)==m.end())
-                return -1;
-            l.splice(l.begin(),l,m[key]);
-            return m[key]->second;
-        }
-        void put(int key, int value)
-        {
-            if(m.find(key)!=m.end())
-            {
-                l.splice(l.begin(),l,m[key]);
-                m[key]->second=value;
-                return;
-            }
-            if(l.size()==size)
-            {
-                auto d_key=l.back().first;
-                l.pop_back();
-                m.erase(d_key);
-            }
-            l.push_front({key,value});
-            m[key]=l.begin();
-        }
-};
+    };
+    node *head=new node(-1,-1);
+    node *tail=new node(-1,-1);
+    int cap;
+    unordered_map<int,node*>a;
 
-//https://leetcode.com/problems/lru-cache/discuss/792449/Simple-C%2B%2B-Solution-with-Detailed-Explanation-%3A-
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache* obj = new LRUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
+    LRUCache(int capacity) {
+        cap=capacity;
+        head->next=tail;
+        tail->prev=head;
+    }   
+    void addnode(node *tempr){
+        node* tt=head->next;
+        tempr->next=tt;
+        tempr->prev=head;
+        head->next=tempr;
+        tt->prev=tempr;
+    }
+    void deletenode(node*temp){
+        node *tprev=temp->prev;
+        node *tnext=temp->next;
+        tprev->next=tnext;
+        tnext->prev=tprev;
+    }
+
+    int get(int key) {
+        if(a.find(key)!=a.end())
+        {
+            node*tempe=a[key];
+            int value=tempe->val;
+            a.erase(key);
+            deletenode(tempe);
+            addnode(tempe);
+            a[key]=head->next;
+            return value;
+        }
+        return -1;
+    }
+
+    void put(int key, int value) {
+        if(a.find(key)!=a.end())
+         {
+             node *exis=a[key];
+             a.erase(key);
+             deletenode(exis);
+         }
+        if(a.size()==cap)
+        {
+            a.erase(tail->prev->key);
+            deletenode(tail->prev);
+        }
+        addnode(new node(key,value));
+        a[key]=head->next;
+    }
+};
