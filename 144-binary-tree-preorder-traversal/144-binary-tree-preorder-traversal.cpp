@@ -26,3 +26,4 @@ public:
         return ans;
     }
 };
+// iterative all:\U0001f917 https://leetcode.com/problems/binary-tree-preorder-traversal/discuss/1540041/C%2B%2B-or-Inorder-Preorder-Postorder-All-3-solution-or-0ms-faster-than-100
