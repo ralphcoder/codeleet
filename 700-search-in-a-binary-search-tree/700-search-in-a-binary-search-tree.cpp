@@ -14,7 +14,7 @@ public:
     TreeNode*tem;int v;
     void search(TreeNode* root){
         if(root==NULL)return;
-        if(root->val==v)tem=root;
+        if(root->val==v){tem=root;return;}
         search(root->left);
         search(root->right);
     }
