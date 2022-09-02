@@ -20,7 +20,6 @@ public:
         return (root->val+max(ls,rs));
     }
     int maxPathSum(TreeNode* root) {
-        if(root->left==NULL && root->right==NULL)return root->val;
         int sum=INT_MIN;
         maxPathSu(root,sum);
         return sum;
