@@ -11,12 +11,19 @@
  */
 class Solution {
 public:
-   TreeNode *insertIntoBST(TreeNode *root, int val)
-	{
-		TreeNode **cur = &root;
-		while( *cur )
-			cur = (val > (*cur)->val) ? &(*cur)->right : &(*cur)->left;
-		*cur = new TreeNode(val);
+   TreeNode *insertIntoBST(TreeNode* root, int val)
+	{ if(root==NULL)return new TreeNode(val);
+		TreeNode *cur = root;
+       TreeNode *prev= root;
+		while( cur ){
+		if(val > cur->val) {
+            prev=cur;
+            cur= cur->right ;}
+        else{
+            prev=cur;  
+            cur= cur->left;}}
+		cur = new TreeNode(val);
+        (prev->val>val)? prev->left=cur:prev->right=cur;
 		return root;
 	}
 };
