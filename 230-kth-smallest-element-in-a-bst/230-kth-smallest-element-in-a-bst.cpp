@@ -14,10 +14,10 @@ public:
     int ind=0,ans=0;
     void find(TreeNode* root,int k){
         if(root==NULL) return ;
-        find(root->left,k);
+        kthSmallest(root->left,k);
         ind++;
         if(ind==k) ans=root->val;
-        find(root->right,k);
+        kthSmallest(root->right,k);
     }
     int kthSmallest(TreeNode* root, int k) {
         if(root==NULL)return 0;
